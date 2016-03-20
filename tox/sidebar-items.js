@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["toxcore","Core Tox module. Provides an API on top of which other modules and applications may be build."]]});

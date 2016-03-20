@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `PacketKind` enum in crate `tox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, PacketKind">
+
+    <title>tox::toxcore::dht::PacketKind - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>tox</a>::<wbr><a href='../index.html'>toxcore</a>::<wbr><a href='index.html'>dht</a></p><script>window.sidebarCurrent = {name: 'PacketKind', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>tox</a>::<wbr><a href='../index.html'>toxcore</a>::<wbr><a href='index.html'>dht</a>::<wbr><a class='enum' href=''>PacketKind</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-110' class='srclink' href='../../../src/tox/src/toxcore/dht.rs.html#41-82' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum PacketKind {
+    PingReq,
+    PingResp,
+    GetN,
+    SendN,
+    CookieReq,
+    CookieResp,
+    CryptoHs,
+    CryptoData,
+    DhtReq,
+    LanDisc,
+    OnionReq0,
+    OnionReq1,
+    OnionReq2,
+    AnnReq,
+    AnnResp,
+    OnionDataReq,
+    OnionDataResp,
+    OnionResp3,
+    OnionResp2,
+    OnionResp1,
+}</pre><div class='docblock'><p>Top-level packet kind names and their associated numbers.</p>
+
+<p>According to <a href="https://toktok.github.io/spec.html#packet-kind">https://toktok.github.io/spec.html#packet-kind</a>.</p>
+</div><h2 class='variants'>Variants</h2>
+<table class='variants_table'><tr><td id='variant.PingReq'><code>PingReq</code></td><td><div class='docblock'><p><a href="./struct.Ping.html"><code>Ping</code></a> request number.</p>
+</div></td><td></td></tr><tr><td id='variant.PingResp'><code>PingResp</code></td><td><div class='docblock'><p><a href="./struct.Ping.html"><code>Ping</code></a> response number.</p>
+</div></td><td></td></tr><tr><td id='variant.GetN'><code>GetN</code></td><td><div class='docblock'><p><a href="./struct.GetNodes.html"><code>GetNodes</code></a> packet number.</p>
+</div></td><td></td></tr><tr><td id='variant.SendN'><code>SendN</code></td><td><div class='docblock'><p><a href="./struct.SendNodes.html"><code>SendNodes</code></a> packet number.</p>
+</div></td><td></td></tr><tr><td id='variant.CookieReq'><code>CookieReq</code></td><td><div class='docblock'><p>Cookie Request.</p>
+</div></td><td></td></tr><tr><td id='variant.CookieResp'><code>CookieResp</code></td><td><div class='docblock'><p>Cookie Response.</p>
+</div></td><td></td></tr><tr><td id='variant.CryptoHs'><code>CryptoHs</code></td><td><div class='docblock'><p>Crypto Handshake.</p>
+</div></td><td></td></tr><tr><td id='variant.CryptoData'><code>CryptoData</code></td><td><div class='docblock'><p>Crypto Data (general purpose packet for transporting encrypted data).</p>
+</div></td><td></td></tr><tr><td id='variant.DhtReq'><code>DhtReq</code></td><td><div class='docblock'><p>DHT Request.</p>
+</div></td><td></td></tr><tr><td id='variant.LanDisc'><code>LanDisc</code></td><td><div class='docblock'><p>LAN Discovery.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionReq0'><code>OnionReq0</code></td><td><div class='docblock'><p>Onion Reuqest 0.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionReq1'><code>OnionReq1</code></td><td><div class='docblock'><p>Onion Request 1.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionReq2'><code>OnionReq2</code></td><td><div class='docblock'><p>Onion Request 2.</p>
+</div></td><td></td></tr><tr><td id='variant.AnnReq'><code>AnnReq</code></td><td><div class='docblock'><p>Announce Request.</p>
+</div></td><td></td></tr><tr><td id='variant.AnnResp'><code>AnnResp</code></td><td><div class='docblock'><p>Announce Response.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionDataReq'><code>OnionDataReq</code></td><td><div class='docblock'><p>Onion Data Request.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionDataResp'><code>OnionDataResp</code></td><td><div class='docblock'><p>Onion Data Response.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionResp3'><code>OnionResp3</code></td><td><div class='docblock'><p>Onion Response 3.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionResp2'><code>OnionResp2</code></td><td><div class='docblock'><p>Onion Response 2.</p>
+</div></td><td></td></tr><tr><td id='variant.OnionResp1'><code>OnionResp1</code></td><td><div class='docblock'><p>Onion Response 1.</p>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../../tox/toxcore/binary_io/trait.FromBytes.html' title='tox::toxcore::binary_io::FromBytes'>FromBytes</a>&lt;<a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a>&gt; for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='docblock'><p>Parse first byte from provided <code>bytes</code> as <code>PacketKind</code>.</p>
+
+<p>Returns <code>None</code> if no bytes provided, or first byte doesn&#39;t match.</p>
+</div><div class='impl-items'><h4 id='method.from_bytes' class='method'><code>fn <a href='../../../tox/toxcore/binary_io/trait.FromBytes.html#method.from_bytes' class='fnname'>from_bytes</a>(bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Self&gt;</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../../tox/toxcore/dht/enum.PacketKind.html' title='tox::toxcore::dht::PacketKind'>PacketKind</a></code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "tox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

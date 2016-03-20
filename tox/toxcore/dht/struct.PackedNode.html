@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `PackedNode` struct in crate `tox`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, PackedNode">
+
+    <title>tox::toxcore::dht::PackedNode - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>tox</a>::<wbr><a href='../index.html'>toxcore</a>::<wbr><a href='index.html'>dht</a></p><script>window.sidebarCurrent = {name: 'PackedNode', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>tox</a>::<wbr><a href='../index.html'>toxcore</a>::<wbr><a href='index.html'>dht</a>::<wbr><a class='struct' href=''>PackedNode</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-398' class='srclink' href='../../../src/tox/src/toxcore/dht.rs.html#387-394' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct PackedNode {
+    pub ip_type: <a class='enum' href='../../../tox/toxcore/dht/enum.IpType.html' title='tox::toxcore::dht::IpType'>IpType</a>,
+    pub saddr: <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a>,
+    pub pk: <a class='struct' href='../../../sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/struct.PublicKey.html' title='sodiumoxide::crypto::box_::curve25519xsalsa20poly1305::PublicKey'>PublicKey</a>,
+}</pre><div class='docblock'><p><code>Packed Node</code> format is a way to store the node info in a small yet easy to
+parse format.</p>
+
+<p>It is used in many places in Tox, e.g. in <code>DHT Send nodes</code>.</p>
+
+<p>To store more than one node, simply append another on to the previous one:</p>
+
+<p><code>[packed node 1][packed node 2][...]</code></p>
+
+<p>Packed node format:</p>
+
+<pre><code class="language-text">                         (39 bytes for IPv4, 51 for IPv6)
++-----------------------------------+
+| ip_type                ( 1 byte ) |
+|                                   |
+| IPv4 Address           ( 4 bytes) |
+|  -OR-                     -OR-    |
+| IPv6 Address           (16 bytes) |
+| Port                   ( 2 bytes) |
+| Node ID                (32 bytes) |
++-----------------------------------+
+</code></pre>
+
+<p>DHT module <em>should</em> use only UDP variants of <code>IpType</code>, given that DHT runs
+solely on the UDP.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr class='stab '>
+                                  <td id='structfield.ip_type'><code>ip_type</code></td><td><div class='docblock'><p>IP type, includes also info about protocol used.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.saddr'><code>saddr</code></td><td><div class='docblock'><p>Socket addr of node.</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.pk'><code>pk</code></td><td><div class='docblock'><p>Public Key of the node.</p>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(udp: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>, saddr: <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a>, pk: &amp;<a class='struct' href='../../../sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/struct.PublicKey.html' title='sodiumoxide::crypto::box_::curve25519xsalsa20poly1305::PublicKey'>PublicKey</a>) -&gt; Self</code></h4>
+<div class='docblock'><p>New <code>PackedNode</code>.</p>
+
+<p><code>udp</code> – whether UDP or TCP should be used. UDP is used for DHT nodes,
+whereas TCP is used for TCP relays.</p>
+</div><h4 id='method.ip' class='method'><code>fn <a href='#method.ip' class='fnname'>ip</a>(&amp;self) -&gt; <a class='enum' href='../../../ip/enum.IpAddr.html' title='ip::IpAddr'>IpAddr</a></code></h4>
+<div class='docblock'><p>Get an IP address from the <code>PackedNode</code>.</p>
+</div><h4 id='method.from_bytes_multiple' class='method'><code>fn <a href='#method.from_bytes_multiple' class='fnname'>from_bytes_multiple</a>(bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a>&gt;&gt;</code></h4>
+<div class='docblock'><p>Parse bytes into multiple <code>PackedNode</code>s.</p>
+
+<p>If provided bytes are smaller than <a href="./constant.PACKED_NODE_IPV4_SIZE.html"><code>PACKED_NODE_IPV4_SIZE</code></a> or can&#39;t be parsed, returns
+<code>None</code>.</p>
+
+<p>Parses nodes until first error is encountered.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../../tox/toxcore/binary_io/trait.ToBytes.html' title='tox::toxcore::binary_io::ToBytes'>ToBytes</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='docblock'><p>Serialize <code>PackedNode</code> into bytes.</p>
+
+<p>Can be either <a href="./constant.PACKED_NODE_IPV4_SIZE.html"><code>PACKED_NODE_IPV4_SIZE</code></a> or <a href="./constant.PACKED_NODE_IPV6_SIZE.html"><code>PACKED_NODE_IPV6_SIZE</code></a> bytes long, depending on whether
+IPv4 or IPv6 is being used.</p>
+</div><div class='impl-items'><h4 id='method.to_bytes' class='method'><code>fn <a href='../../../tox/toxcore/binary_io/trait.ToBytes.html#method.to_bytes' class='fnname'>to_bytes</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../../../tox/toxcore/binary_io/trait.FromBytes.html' title='tox::toxcore::binary_io::FromBytes'>FromBytes</a>&lt;<a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a>&gt; for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='docblock'><p>Deserialize bytes into <code>PackedNode</code>. Returns <code>None</code> if deseralizing
+failed.</p>
+
+<p>Can fail if:</p>
+
+<ul>
+<li>length is too short for given <a href="./enum.IpType.html"><code>IpType</code></a></li>
+<li>PK can&#39;t be parsed</li>
+</ul>
+
+<p>Blindly trusts that provided <code>IpType</code> matches - i.e. if there are provided
+51 bytes (which is lenght of <code>PackedNode</code> that contains IPv6), and <code>IpType</code>
+says that it&#39;s actually IPv4, bytes will be parsed as if that was an IPv4
+address.</p>
+</div><div class='impl-items'><h4 id='method.from_bytes' class='method'><code>fn <a href='../../../tox/toxcore/binary_io/trait.FromBytes.html#method.from_bytes' class='fnname'>from_bytes</a>(bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;Self&gt;</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h4>
+<h4 id='method.clone_from' class='method'><span class="since">1.0.0</span><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../../tox/toxcore/dht/struct.PackedNode.html' title='tox::toxcore::dht::PackedNode'>PackedNode</a></code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "tox";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>
